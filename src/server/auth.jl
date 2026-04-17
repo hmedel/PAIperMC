@@ -1,3 +1,1 @@
-# auth.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# auth.jl — stub

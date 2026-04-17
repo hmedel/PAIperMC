@@ -1,3 +1,1 @@
-# workspace.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# project/workspace.jl — stub

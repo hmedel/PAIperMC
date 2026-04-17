@@ -1,3 +1,1 @@
-# anthropic.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# models/anthropic.jl — stub

@@ -1,3 +1,1 @@
-# scaffold.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# project/scaffold.jl — stub

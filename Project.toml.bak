@@ -1,0 +1,20 @@
+name    = "Paipermc"
+uuid    = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+authors = ["Héctor Javier Medel Cobaxin <hector@phaimat.com>"]
+version = "0.1.0"
+
+[deps]
+ArgParse        = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
+HTTP            = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON3           = "0f8b85d8-7e73-4b43-9b55-9e7f2f3a5df8"
+WebSockets      = "104b5d7c-a370-577a-8038-80a2059c5097"
+TOML            = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+Logging         = "56ddb016-857b-54e1-b83d-db4d58db5568"
+Dates           = "ade2ca70-3891-5945-98fb-dc099432e06a"
+UUIDs           = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
+StructTypes     = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
+PythonCall      = "6099a3de-0909-46bc-b1f4-468b9a2dfc0b"
+PackageCompiler = "9b87118b-4619-50d2-8e1e-99f35a4d4d9d"
+
+[compat]
+julia = "1.10"

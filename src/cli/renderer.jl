@@ -1,3 +1,1 @@
-# renderer.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# cli/renderer.jl — stub

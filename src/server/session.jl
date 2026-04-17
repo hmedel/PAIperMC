@@ -1,3 +1,1 @@
-# session.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# session.jl — stub

@@ -1,3 +1,1 @@
-# connection.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# cli/connection.jl — stub

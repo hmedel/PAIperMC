@@ -1,3 +1,1 @@
-# selector.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# models/selector.jl — stub

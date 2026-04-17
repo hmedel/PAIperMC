@@ -1,3 +1,1 @@
-# commands.jl — stub, implementado en Fase posterior
-# TODO: implementar
-end
+# cli/commands.jl — stub

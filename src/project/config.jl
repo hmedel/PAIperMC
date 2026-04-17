@@ -1,7 +1,4 @@
-# src/project/config.jl
-
-using TOML
-export ProjectConfig, load_config, find_project_root
+# project/config.jl
 
 struct ProjectConfig
     name         :: String
@@ -19,13 +16,12 @@ end
 
 function load_config(root::String) :: ProjectConfig
     toml_path = joinpath(root, "papermind.toml")
-    isfile(toml_path) || return _defaults(root)
+    isfile(toml_path) || return _default_config(root)
     cfg = TOML.parsefile(toml_path)
-    p   = get(cfg, "project",   Dict())
-    s   = get(cfg, "server",    Dict())
-    l   = get(cfg, "literature", Dict())
-    f   = get(cfg, "formal",    Dict())
-
+    p = get(cfg, "project",    Dict())
+    s = get(cfg, "server",     Dict())
+    l = get(cfg, "literature", Dict())
+    f = get(cfg, "formal",     Dict())
     ProjectConfig(
         get(p, "name",     basename(root)),
         get(p, "main",     "main.tex"),
@@ -37,7 +33,7 @@ function load_config(root::String) :: ProjectConfig
         get(s, "port",     9000),
         get(s, "key",      "sk-phaimat-agent"),
         get(f, "lean_dir", ".paipermc/lean"),
-        get(l, "sources",  ["local", "semantic_scholar", "arxiv"]),
+        get(l, "sources",  ["local", "arxiv"]),
     )
 end
 
@@ -52,7 +48,7 @@ function find_project_root(start::String = pwd()) :: String
     start
 end
 
-function _defaults(root::String) :: ProjectConfig
+function _default_config(root::String) :: ProjectConfig
     ProjectConfig(
         basename(root), "main.tex", "", "", "en", "refs.bib",
         "100.64.0.22", 9000, "sk-phaimat-agent",
