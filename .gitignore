@@ -1,0 +1,44 @@
+# Julia
+*.so
+*.ji
+*.jl.cov
+*.jl.mem
+Manifest.toml
+build/
+.julia/
+
+# paipermc compilados
+paipermc.so
+paipermc-sysimage
+build/
+
+# Datos y secrets
+.env
+*.env
+.paipermc/
+data/
+
+# Lean build
+.lake/
+*.olean
+*.ilean
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Docker
+docker/literature-svc/__pycache__/
+
+# Editor
+.DS_Store
+*~
+\#*\#
+.dir-locals.el
+
+# Logs
+*.log
+*.jsonl
+lean/

@@ -1,0 +1,49 @@
+# paipermc — Docker Compose
+# LiteLLM gateway + literature service
+# Generado por install-xolotl.sh
+
+services:
+
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: paipermc-litellm
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:8088:4000"
+    volumes:
+      - /home/mech/Projects/PAIperMC/paipermc/docker/litellm_config.yaml:/app/config.yaml:ro
+    env_file:
+      - /home/mech/Projects/PAIperMC/paipermc/.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: ["--config", "/app/config.yaml"]
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:4000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  literature-svc:
+    build:
+      context: /home/mech/Projects/PAIperMC/paipermc/docker/literature-svc
+    container_name: paipermc-literature
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:8081:8081"
+    volumes:
+      - /home/mech/Projects/PAIperMC/data/lancedb:/data/lancedb
+      - /home/mech/Projects/PAIperMC/data/papers_global:/data/papers_global
+    env_file:
+      - /home/mech/Projects/PAIperMC/paipermc/.env
+    environment:
+      - LANCEDB_PATH=/data/lancedb
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8081/health')"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+
+networks:
+  default:
+    name: paipermc-network

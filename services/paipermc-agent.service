@@ -1,0 +1,19 @@
+[Unit]
+Description=paipermc Agent Server (Julia WebSocket :9000)
+After=network.target ollama.service paipermc-docker.service
+Wants=ollama.service paipermc-docker.service
+
+[Service]
+Type=simple
+User=mech
+WorkingDirectory=/home/mech/Projects/PAIperMC/paipermc
+Environment="PAIPERMC_LITELLM_HOST=http://100.64.0.22:8088"
+Environment="PAIPERMC_LITELLM_KEY=sk-phaimat-local"
+Environment="PAIPERMC_LITERATURE_HOST=http://100.64.0.22:8081"
+Environment="PAIPERMC_AGENT_KEY=sk-phaimat-agent"
+ExecStart=/home/mech/.julia/bin/julia --project=. -e 'using Paipermc; AgentServer.start_server()'
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

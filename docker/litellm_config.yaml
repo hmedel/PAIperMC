@@ -1,0 +1,115 @@
+# paipermc — LiteLLM gateway
+# Cada agente usa el modelo óptimo para su tarea cognitiva
+
+model_list:
+
+  # ── Agentes locales (Ollama) ─────────────────────────────────────────────
+  # Modelos confirmados en xolotl:
+  #   qwen2.5:7b-instruct-q4_K_M   — escritura, instrucciones
+  #   qwen2-math:7b-instruct        — matemáticas, LaTeX formal
+  #   mistral-small:22b             — contexto largo, síntesis
+  #   deepseek-r1:14b               — razonamiento en cadena, auditoría
+  #   qwen3:8b                      — general, fallback rápido
+  #   nomic-embed-text:latest       — embeddings semánticos
+
+  # Prosa, estructura, estilo — inglés técnico
+  - model_name: writer
+    litellm_params:
+      model: ollama/qwen2.5:7b-instruct-q4_K_M
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Escritura científica, IMRaD, estilo de journal"
+
+  # LaTeX matemático — precisión simbólica
+  - model_name: mathematician
+    litellm_params:
+      model: ollama/qwen2-math:7b-instruct
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Ecuaciones, notación, entornos LaTeX"
+
+  # Literatura, síntesis, BibTeX — contexto largo
+  - model_name: literature
+    litellm_params:
+      model: ollama/mistral-small:22b
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Síntesis multi-paper, generación de BibTeX"
+
+  # Investigación exhaustiva — análisis profundo del proyecto
+  - model_name: researcher
+    litellm_params:
+      model: ollama/mistral-small:22b
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Mapa conceptual, gap analysis de literatura"
+
+  # Revisión: estilo e inglés técnico
+  - model_name: reviewer-style
+    litellm_params:
+      model: ollama/qwen2.5:7b-instruct-q4_K_M
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Gramática, claridad, terminología de journal"
+
+  # Revisión: auditoría lógica — deepseek-r1 razona antes de responder
+  - model_name: reviewer-argument
+    litellm_params:
+      model: ollama/deepseek-r1:14b
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Estructura lógica, claims sin soporte, razonamiento en cadena"
+
+  # Revisión: gaps matemáticos — primera pasada formal
+  - model_name: reviewer-gaps
+    litellm_params:
+      model: ollama/qwen2-math:7b-instruct
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Hipótesis implícitas, contraejemplos, notación"
+
+  # Lean 4 — razonamiento formal + síntesis larga
+  - model_name: lean
+    litellm_params:
+      model: ollama/mistral-small:22b
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Scaffold LaTeX→Lean4, análisis de gaps formales"
+
+  # Embeddings — siempre residente en VRAM
+  - model_name: embeddings
+    litellm_params:
+      model: ollama/nomic-embed-text:latest
+      api_base: http://host.docker.internal:11434
+    model_info:
+      description: "Embeddings semánticos para LanceDB"
+
+  # ── Modelos externos (requieren confirmación en el agente) ────────────────
+
+  # Razonamiento profundo, revisión completa de paper
+  - model_name: claude-opus-4-5
+    litellm_params:
+      model: claude-opus-4-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  # Revisión de sección, Lean agent cuando lo local no alcanza
+  - model_name: claude-sonnet-4-5
+    litellm_params:
+      model: claude-sonnet-4-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  # Contexto muy largo: proyecto completo + corpus de literatura
+  - model_name: gemini-2.5-pro
+    litellm_params:
+      model: gemini/gemini-2.5-pro
+      api_key: os.environ/GOOGLE_AI_API_KEY
+
+litellm_settings:
+  drop_params: true
+  request_timeout: 600
+  set_verbose: false
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  port: 8080
+  host: "0.0.0.0"
