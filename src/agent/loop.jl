@@ -1,11 +1,4 @@
-module Loop
-
 using Logging, Dates, UUIDs
-using ..Definitions
-using ..Gateway
-using ..History
-using ..Router
-using ..Confirmation
 
 export AgentLoop, AgentLoopConfig, run!, stop!
 
@@ -210,5 +203,3 @@ function _build_tool_specs(registry::Dict{String, Function}) :: Vector{Dict}
     # El registry.jl inyectará las specs completas
     Dict[]
 end
-
-end # module

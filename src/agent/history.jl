@@ -1,7 +1,4 @@
-module History
-
 using Dates, JSON3
-using ..Gateway: Message
 
 export ConversationHistory, push_user!, push_assistant!, push_tool!,
        push_system!, to_messages, clear!, summary, trim_to_limit!
@@ -115,5 +112,3 @@ function load(path::String) :: ConversationHistory
     end
     h
 end
-
-end # module

@@ -1,10 +1,4 @@
-module AgentServer
-
 using HTTP, WebSockets, JSON3, Logging, UUIDs, Dates
-using ..Loop
-using ..History
-using ..Confirmation
-using ..ToolRegistry
 
 export start_server
 
@@ -283,5 +277,3 @@ function _read_project_name(root::String) :: String
         basename(root)
     end
 end
-
-end # module AgentServer

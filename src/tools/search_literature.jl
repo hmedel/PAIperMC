@@ -1,4 +1,3 @@
-module SearchLiterature
 export run
 
 using HTTP, JSON3
@@ -59,10 +58,8 @@ end # module SearchLiterature
 
 # ─────────────────────────────────────────────────────────────────────────────
 
-module ImproveParagraph
 export run
 
-using ..Gateway: chat_completion, Message
 
 function run(args::Dict, project_root::String) :: String
     text = get(args, "text", "")
@@ -88,10 +85,8 @@ end # module ImproveParagraph
 
 # ─────────────────────────────────────────────────────────────────────────────
 
-module CheckLatex
 export run
 
-using ..Gateway: chat_completion, Message
 
 function run(args::Dict, project_root::String) :: String
     latex = get(args, "latex", "")
@@ -122,10 +117,8 @@ end # module CheckLatex
 
 # ─────────────────────────────────────────────────────────────────────────────
 
-module CallExternal
 export run
 
-using ..Gateway
 using Dates, JSON3
 
 function run(args::Dict, project_root::String) :: String
@@ -164,5 +157,3 @@ function run(args::Dict, project_root::String) :: String
         "Error calling external API: $(sprint(showerror, e))"
     end
 end
-
-end # module CallExternal

@@ -1,5 +1,3 @@
-module REPL_Module
-
 using REPL, Sockets, JSON3
 
 export start
@@ -277,5 +275,3 @@ function _read_project_name(root::String) :: String
         basename(root)
     end
 end
-
-end # module REPL_Module

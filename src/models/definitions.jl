@@ -1,5 +1,3 @@
-module Definitions
-
 export ModelConfig, AgentConfig, AGENTS, MODELS, resolve_model
 
 # ── Configuración de modelo ──────────────────────────────────────────────────
@@ -81,7 +79,7 @@ const AGENTS = Dict{String, AgentConfig}(
         "writer", "writer",
         """You are a scientific writing assistant for mathematical physics and applied
 mathematics. You write precise technical English suitable for journals such as
-JMP, Physica D, and SIAM. Preserve all LaTeX markup. When suggesting edits,
+JMP, Physica D, and SIA Preserve all LaTeX markup. When suggesting edits,
 return valid compilable LaTeX. Never alter equation content — only surrounding
 prose. When you need to read files or search for references, use the available
 tools. Think step by step before proposing any change.""",
@@ -161,11 +159,9 @@ proof.""",
 )
 
 """
-Resolve a model name or alias to a ModelConfig.
+Resolve a model name or alias to a Model
 Returns nothing if not found.
 """
 function resolve_model(name::String) :: Union{ModelConfig, Nothing}
     get(MODELS, name, nothing)
 end
-
-end # module

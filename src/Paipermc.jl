@@ -1,11 +1,13 @@
 module Paipermc
 
-using Logging
+using Logging, Dates, UUIDs, TOML
+using HTTP, JSON3, WebSockets, ArgParse
+using StructTypes
 
-# ── Re-exports públicos ──────────────────────────────────────────────────────
-export serve, repl, run_command
+# ── Includes en orden de dependencia ────────────────────────────────────────
+# Archivos incluidos directamente en el namespace Paipermc
+# Sin submódulos internos — evita problemas de imports relativos
 
-# ── Carga de submódulos en orden de dependencia ──────────────────────────────
 include("project/config.jl")
 include("project/workspace.jl")
 include("project/scaffold.jl")
@@ -45,4 +47,4 @@ include("cli/repl.jl")
 include("cli/commands.jl")
 include("cli/main.jl")
 
-end # module
+end # module Paipermc

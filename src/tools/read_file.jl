@@ -1,4 +1,3 @@
-module ReadFile
 export run
 
 const MAX_TOKENS = 8000   # ~32000 chars antes de truncar
@@ -34,7 +33,6 @@ end # module ReadFile
 
 # ─────────────────────────────────────────────────────────────────────────────
 
-module WriteFile
 export run
 
 using Dates
@@ -83,7 +81,6 @@ end # module WriteFile
 
 # ─────────────────────────────────────────────────────────────────────────────
 
-module ListFiles
 export run
 
 function run(args::Dict, project_root::String) :: String
@@ -133,5 +130,3 @@ function _fmt_size(bytes::Int) :: String
     bytes < 1024^2    && return "$(round(bytes/1024, digits=1))KB"
     return "$(round(bytes/1024^2, digits=1))MB"
 end
-
-end # module ListFiles

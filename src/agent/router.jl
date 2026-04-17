@@ -1,7 +1,3 @@
-module Router
-
-using ..Definitions
-
 export route_agent, AgentRoute
 
 # ── Resultado del routing ────────────────────────────────────────────────────
@@ -98,5 +94,3 @@ function _normalize_agent(s::String) :: String
     # reviewer_style → reviewer-style
     replace(s, "_" => "-")
 end
-
-end # module

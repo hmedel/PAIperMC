@@ -1,9 +1,4 @@
-module Main
-
 using ArgParse, Logging
-using ..AgentServer
-using ..Gateway
-using ..SearchLiterature
 
 export julia_main
 
@@ -84,12 +79,12 @@ function julia_main() :: Cint
     # Configurar gateway
     litellm_host = get(ENV, "PAIPERMC_LITELLM_HOST", "http://100.64.0.22:8088")
     litellm_key  = get(ENV, "PAIPERMC_LITELLM_KEY", "sk-phaimat-local")
-    Gateway.set_host!(litellm_host)
-    Gateway.set_key!(litellm_key)
+    set_host!(litellm_host)
+    set_key!(litellm_key)
 
     # Configurar literature-svc
     lit_host = get(ENV, "PAIPERMC_LITERATURE_HOST", "http://100.64.0.22:8081")
-    SearchLiterature.set_host!(lit_host)
+    set_host!(lit_host)
 
     # Despacho de comandos
     cmd = args["command"]
@@ -97,7 +92,7 @@ function julia_main() :: Cint
     if args["serve"]
         # Modo MCP stdio para Emacs
         include("../mcp/server.jl")
-        MCPServer.start_stdio()
+        start_stdio()
         return 0
     end
 
@@ -109,7 +104,7 @@ function julia_main() :: Cint
         if cmd == "serve"
             # Modo servidor WebSocket
             @info "Starting paipermc agent server..."
-            AgentServer.start_server(
+            start_server(
                 host = args["host"],
                 port = args["port"],
                 key  = args["key"],
@@ -142,7 +137,7 @@ end
 # ── One-shot ─────────────────────────────────────────────────────────────────
 function run_oneshot(prompt::String, args::Dict, project_root::String) :: Cint
     include("../cli/connection.jl")
-    Connection.run_oneshot(
+    run_oneshot(
         prompt,
         project_root = project_root,
         model        = args["model"],
@@ -155,7 +150,7 @@ end
 # ── REPL ─────────────────────────────────────────────────────────────────────
 function run_repl(args::Dict, project_root::String) :: Nothing
     include("../cli/repl.jl")
-    REPL_Module.start(
+    start(
         project_root = project_root,
         model        = args["model"],
         verbose      = args["verbose"],
@@ -230,5 +225,3 @@ function _resolve_project_root(explicit::Union{String,Nothing}) :: String
     # Default: directorio actual
     pwd()
 end
-
-end # module Main

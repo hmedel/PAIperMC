@@ -1,5 +1,3 @@
-module Confirmation
-
 export ConfirmRequest, ConfirmResponse, ConfirmAction,
        requires_confirmation, build_confirm_request,
        CONFIRM_TIMEOUT
@@ -123,5 +121,3 @@ function action_label(a::ConfirmAction) :: String
     a == SEARCH_EXTERNAL && return "query external academic APIs"
     "perform action"
 end
-
-end # module

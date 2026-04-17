@@ -1,5 +1,4 @@
 # src/project/config.jl
-module Config
 
 using TOML
 export ProjectConfig, load_config, find_project_root
@@ -60,5 +59,3 @@ function _defaults(root::String) :: ProjectConfig
         ".paipermc/lean", ["local", "arxiv"],
     )
 end
-
-end # module Config

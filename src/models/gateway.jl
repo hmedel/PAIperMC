@@ -1,7 +1,4 @@
-module Gateway
-
 using HTTP, JSON3, Logging
-using ..Definitions
 
 export chat_completion, stream_completion, embed
 
@@ -177,5 +174,3 @@ function embed(text::String) :: Vector{Float32}
     data = JSON3.read(resp.body)
     Float32.(data["data"][1]["embedding"])
 end
-
-end # module

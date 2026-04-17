@@ -1,5 +1,3 @@
-module ToolRegistry
-
 export build_registry, TOOL_SPECS
 
 # ── Especificaciones de tools en formato OpenAI ──────────────────────────────
@@ -126,13 +124,11 @@ Cada función recibe (args::Dict, project_root::String) y retorna String.
 """
 function build_registry(project_root::String) :: Dict{String, Function}
     Dict{String, Function}(
-        "read_file"          => (args, root) -> ReadFile.run(args, root),
-        "write_file"         => (args, root) -> WriteFile.run(args, root),
-        "list_files"         => (args, root) -> ListFiles.run(args, root),
-        "search_literature"  => (args, root) -> SearchLiterature.run(args, root),
-        "improve_paragraph"  => (args, root) -> ImproveParagraph.run(args, root),
-        "check_latex"        => (args, root) -> CheckLatex.run(args, root),
+        "read_file"          => (args, root) -> run(args, root),
+        "write_file"         => (args, root) -> run(args, root),
+        "list_files"         => (args, root) -> run(args, root),
+        "search_literature"  => (args, root) -> run(args, root),
+        "improve_paragraph"  => (args, root) -> run(args, root),
+        "check_latex"        => (args, root) -> run(args, root),
     )
 end
-
-end # module
